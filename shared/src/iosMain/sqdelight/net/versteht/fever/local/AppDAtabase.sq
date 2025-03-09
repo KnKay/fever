@@ -1,0 +1,38 @@
+import kotlin.Boolean;
+
+CREATE TABLE Case(
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    started DATE NOT NULL,
+    docChecked INTEGER AS Boolean DEFAULT NULL
+);
+
+insertCase:
+INSERT INTO Case(name, started, docChecked)
+VALUES(?,?,?);
+
+selectAllCases:
+SELECT Case.*
+FROM Case;
+
+selectCaseById:
+SELECT *
+FROM Case
+WHERE id = ?;
+
+CREATE TABLE Point(
+    time DATETIME NOT NULL,
+    measurement FLOAT NOT NULL,
+    case INTEGER,
+    FOREIGN KEY (case) REFERENCES Case(id)
+);
+
+instertPoint:
+INSERT INTO Point(time, measurement, case)
+VALUES(?,?,?);
+
+selectAllCasePoints:
+SELECT Point.*
+FROM Point
+WHERE case = ?
+ORDER BY time;

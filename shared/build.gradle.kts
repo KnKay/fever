@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlin.plugin.serialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -26,11 +27,18 @@ kotlin {
             // put your Multiplatform dependencies here
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.datetime)
-            implementation(libs.exposed.jdbc)
-            implementation(libs.exposed.dao)
-            implementation(libs.sqlite.jdbc)
-            implementation(libs.h2)
         }
+        iosMain.dependencies {
+            implementation(libs.native.driver)
+            sqldelight{
+                databases {
+                    create("AddDatabase"){
+                        packageName.set("net.versteht.fever.local")
+                    }
+                }
+            }
+        }
+
     }
 }
 
