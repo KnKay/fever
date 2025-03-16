@@ -27,16 +27,14 @@ kotlin {
             // put your Multiplatform dependencies here
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.runtime)
         }
         iosMain.dependencies {
             implementation(libs.native.driver)
-            sqldelight{
-                databases {
-                    create("AddDatabase"){
-                        packageName.set("net.versteht.fever.local")
-                    }
-                }
-            }
+            implementation(libs.runtime)
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
 
     }
@@ -51,5 +49,13 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+sqldelight{
+    databases {
+        create("AppDatabase"){
+            packageName.set("net.versteht.fever.Storage")
+        }
     }
 }

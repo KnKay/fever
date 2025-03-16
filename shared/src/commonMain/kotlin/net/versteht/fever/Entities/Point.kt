@@ -1,4 +1,4 @@
-package net.versteht.fever.entities
+package net.versteht.fever.Entities
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class Point(
     val time: LocalDateTime,
     val measurement: Float,
-    val case: Case
+    val case: Happening
 )

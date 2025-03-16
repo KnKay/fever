@@ -1,0 +1,45 @@
+import kotlin.Boolean;
+
+CREATE TABLE Happening (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    started TEXT,
+    docChecked INTEGER AS Boolean DEFAULT NULL
+);
+
+getHappenings:
+SELECT Happening.*
+FROM Happening;
+
+getHappening:
+SELECT Happening.*
+FROM Happening
+WHERE id = ?;
+
+insertHappening:
+INSERT OR REPLACE
+INTO Happening(id, name, docChecked, started)
+VALUES(?, ?, ?, ?);
+
+getDateHappening:
+SELECT Happening.*
+FROM Happening
+WHERE started = ?;
+
+CREATE TABLE Point (
+   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   measurement  REAL,
+   time TEXT,
+   Happening_id INTEGER NOT NULL
+);
+
+getPoints:
+SELECT Point.*
+FROM Point
+WHERE Happening_id = ?;
+
+insertPoint:
+INSERT OR REPLACE
+INTO Point(id, measurement, time, Happening_id)
+VALUES(?,?,?,?);
+
