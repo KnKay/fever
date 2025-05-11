@@ -5,7 +5,7 @@ import net.versteht.fever.Entities.Happening
 
 
 class CaseStorage(dbDriverFactory: DriverFactoryInterface) : StorageInterface<Happening> {
-    private val database = AppDatabase(dbDriverFactory.createDriver())
+    private val database = AppDatabase(dbDriverFactory.createDriver("fever.db"))
     private val dbQuery = database.appDatabaseQueries
     private fun mapMe(
         read: net.versteht.fever.Storage.Happening
@@ -19,7 +19,6 @@ class CaseStorage(dbDriverFactory: DriverFactoryInterface) : StorageInterface<Ha
     }
 
     override suspend fun create(t: Happening): Happening {
-
             dbQuery.insertHappening(
                 null,
                 t.name,

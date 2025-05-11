@@ -35,6 +35,14 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test )
+        }
+        jvmMain.dependencies {
+            implementation(libs.runtime)
+            implementation(libs.sqldelight.jvm.driver)
+        }
+        jvmTest.dependencies {
+
         }
 
     }
