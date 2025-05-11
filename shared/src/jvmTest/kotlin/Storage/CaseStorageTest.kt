@@ -17,5 +17,7 @@ class CaseStorageTest {
             false
         )
         dut.create(toWrite)
+        val readback = dut.list()
+        assertTrue(readback.isNotEmpty())
     }
 }

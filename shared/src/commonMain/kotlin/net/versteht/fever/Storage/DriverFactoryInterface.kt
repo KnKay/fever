@@ -3,5 +3,5 @@ import app.cash.sqldelight.db.SqlDriver
 
 
 interface DriverFactoryInterface {
-    fun createDriver(dbName: String): SqlDriver
+    fun createDriver(dbName: String = ""): SqlDriver
 }

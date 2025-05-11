@@ -26,12 +26,14 @@ class CaseStorage(dbDriverFactory: DriverFactoryInterface) : StorageInterface<Ha
                 t.started.toString()
             )
             return  mapMe(dbQuery.getDateHappening(t.started.toString()).executeAsOne())
-
-
     }
 
     override suspend fun read(id: Int): Happening {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun list(): List<Happening> {
+        return dbQuery.getHappenings().executeAsList().map { mapMe(it) }
     }
 
     override suspend fun delete(t: Happening): Boolean {
